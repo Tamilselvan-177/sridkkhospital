@@ -1,0 +1,20 @@
+[
+  {
+    "file": "hero-hospital.jpg",
+    "sourceUrl": "https://sridkkhospital.com/wp-content/uploads/2024/10/hosp-scaled.jpg",
+    "license": "Original website asset (SRI D.K.K. Hospital)",
+    "usedIn": ["Home hero", "General hospital visuals"]
+  },
+  {
+    "file": "stock-team-unsplash.jpg",
+    "sourceUrl": "https://images.unsplash.com/photo-1584515933487-779824d29309",
+    "license": "Unsplash License (free to use, attribution appreciated)",
+    "usedIn": ["Fallback team imagery", "Doctor/care sections placeholders"]
+  },
+  {
+    "file": "stock-room-pexels.jpg",
+    "sourceUrl": "https://www.pexels.com/photo/photo-of-hospital-263402/",
+    "license": "Pexels License (free to use, attribution appreciated)",
+    "usedIn": ["Fallback facility imagery", "Contact/support sections placeholders"]
+  }
+]

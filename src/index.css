@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+/* Hide default cursor on pointer-accurate devices (desktop) */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+:root {
+  font-family: "Figtree", "Noto Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color-scheme: light;
+  --white: #ffffff;
+  --black: #000000;
+  --transparent: transparent;
+}
+
+body {
+  margin: 0;
+  background-color: #f8fdff;
+  background:
+    radial-gradient(circle at 10% 0%, #ecfeff 0%, rgba(236, 254, 255, 0) 45%),
+    radial-gradient(circle at 90% 20%, #f0f9ff 0%, rgba(240, 249, 255, 0) 44%),
+    linear-gradient(180deg, #f8fdff 0%, #f3f9fc 100%);
+  color: #164e63;
+}
+
+.container-shell {
+  @apply mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8;
+}
+
+@keyframes aurora {
+  from {
+    background-position: 50% 50%, 50% 50%;
+  }
+  to {
+    background-position: 350% 50%, 350% 50%;
+  }
+}
