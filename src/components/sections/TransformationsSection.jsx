@@ -226,8 +226,8 @@ export function TransformationsSection() {
     <section className="container-shell rounded-[2rem] bg-gradient-to-b from-slate-50 to-white py-14">
       <SectionHeader
         eyebrow="Patient Transformations"
-        title="See the real difference we make"
-        description="Drag the slider on each card to reveal before & after results. Real patients, real outcomes — at Sri D.K.K. Hospital, Kanchipuram."
+        title="Real results from real patients"
+        description="Verified transformation stories across our specialties. Drag the slider on each card to see the before & after difference."
       />
 
       {/* Filter chips */}

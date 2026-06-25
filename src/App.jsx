@@ -6,7 +6,7 @@ import { FloatingWhatsAppButton } from './components/layout/FloatingWhatsAppButt
 import { Navbar } from './components/layout/Navbar'
 import { StickyMobileCTA } from './components/layout/StickyMobileCTA'
 import { ChatBot } from './components/layout/ChatBot'
-import { ReviewPopup } from './components/layout/ReviewPopup'
+import { ReviewRewardWidget } from './components/layout/ReviewRewardWidget'
 import { DiscountStickyBanner } from './components/layout/DiscountStickyBanner'
 import { UrgencyBanner } from './components/sections/UrgencyBanner'
 import { SocialProofTicker } from './components/sections/SocialProofTicker'
@@ -26,7 +26,7 @@ function App() {
   const location = useLocation()
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 antialiased">
+    <div className="min-h-screen bg-slate-50 pb-14 text-slate-900 antialiased">
       <CustomCursor />
       <UrgencyBanner />
       <Navbar />
@@ -112,7 +112,7 @@ function App() {
       <FloatingWhatsAppButton whatsapp={siteData.contact.whatsapp} />
       <StickyMobileCTA phone={siteData.contact.phone} whatsapp={siteData.contact.whatsapp} />
       <ChatBot />
-      <ReviewPopup />
+      <ReviewRewardWidget />
       <DiscountStickyBanner />
     </div>
   )

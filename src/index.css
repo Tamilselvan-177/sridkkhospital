@@ -38,3 +38,56 @@ body {
     background-position: 350% 50%, 350% 50%;
   }
 }
+
+/* -- Google Reviews Badge ----------------------------------------------- */
+.google-reviews-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-decoration: none;
+  transition: transform 150ms ease;
+}
+
+.google-reviews-badge:hover {
+  transform: scale(1.08);
+}
+
+.google-reviews-icon {
+  /* Mobile: 32px */
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.google-reviews-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.google-reviews-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Desktop: 40px icon */
+@media (min-width: 768px) {
+  .google-reviews-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .google-reviews-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+}

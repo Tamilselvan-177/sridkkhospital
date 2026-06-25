@@ -11,7 +11,6 @@ import { Reveal } from "../components/motion/Reveal"
 import { HeroSlider } from "../components/layout/HeroSlider"
 import { TestimonialsCarousel } from "../components/sections/TestimonialsCarousel"
 import { TransformationsSection } from "../components/sections/TransformationsSection"
-import { SuccessStories } from "../components/sections/SuccessStories"
 import { siteData } from "../data/siteData"
 
 export function HomePage() {
@@ -30,6 +29,9 @@ export function HomePage() {
     <>
       {/* ── Hero Slider ───────────────────────────────────────────────────── */}
       <HeroSlider />
+
+      {/* ── What Our Patients Say — Infinite scrolling marquee ───────────── */}
+      <TestimonialsCarousel />
 
       {/* ── Modal ─────────────────────────────────────────────────────────── */}
       {activeModal && (
@@ -172,14 +174,9 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ── Verified Patient Reviews — Auto-rotating testimonials carousel ─ */}
-      <TestimonialsCarousel />
 
       {/* ── Patient Transformations — Drag-to-compare before/after slider ─── */}
       <TransformationsSection />
-
-      {/* ── Before & After Success Stories ───────────────────────────────── */}
-      <SuccessStories />
 
       <section className="container-shell py-12">
         <SectionHeader
