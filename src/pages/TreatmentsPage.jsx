@@ -13,7 +13,6 @@ import {
 } from "lucide-react"
 import { SectionHeader } from "../components/common/SectionHeader"
 import { Reveal } from "../components/motion/Reveal"
-import { SuccessStories } from "../components/sections/SuccessStories"
 import { siteData } from "../data/siteData"
 import { toWhatsAppLink } from "../utils/forms"
 
@@ -226,9 +225,6 @@ export function TreatmentsPage() {
           </motion.div>
         </AnimatePresence>
       </section>
-
-      {/* ── Success Stories ───────────────────────────────────────────────── */}
-      <SuccessStories />
 
       {/* ── Bottom CTA band ───────────────────────────────────────────────── */}
       <section className="container-shell pb-14">

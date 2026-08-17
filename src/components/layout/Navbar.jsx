@@ -18,7 +18,7 @@ export function Navbar() {
           />
           <div className="hidden sm:block">
             <p className="text-sm font-semibold text-slate-900">{siteData.brand.shortName}</p>
-            <p className="text-xs text-slate-600">{siteData.brand.tagline}</p>
+            <p className="text-[11px] text-slate-500 font-medium mt-0.5">General dental | childcare | skin | hair | laser</p>
           </div>
         </Link>
 

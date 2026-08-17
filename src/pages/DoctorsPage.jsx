@@ -96,7 +96,7 @@ function DoctorCard({ doctor, index }) {
         <img
           src={doctor.image}
           alt={`Photo of ${doctor.name}`}
-          className="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+          className={`h-64 w-full object-cover transition duration-500 group-hover:scale-105 ${doctor.imagePosition || "object-top"}`}
           loading="lazy"
         />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-900/60 to-transparent" />

@@ -9,6 +9,7 @@ import { SectionHeader } from "../components/common/SectionHeader"
 import { CallbackForm } from "../components/forms/InquiryForms"
 import { Reveal } from "../components/motion/Reveal"
 import { HeroSlider } from "../components/layout/HeroSlider"
+import { Hospital3DScrubber } from "../components/sections/Hospital3DScrubber"
 import { TestimonialsCarousel } from "../components/sections/TestimonialsCarousel"
 import { TransformationsSection } from "../components/sections/TransformationsSection"
 import { siteData } from "../data/siteData"
@@ -27,8 +28,13 @@ export function HomePage() {
 
   return (
     <>
-      {/* ── Hero Slider ───────────────────────────────────────────────────── */}
-      <HeroSlider />
+      {/* ── 3D Scroll-Scrubbing Hero ──────────────────────────────────────── */}
+      <Hospital3DScrubber />
+
+      {/* EXISTING SLIDER - HIDDEN TEMPORARILY FOR 3D SCROLL EXPERIENCE */}
+      <div className="hidden">
+        <HeroSlider />
+      </div>
 
       {/* ── What Our Patients Say — Infinite scrolling marquee ───────────── */}
       <TestimonialsCarousel />

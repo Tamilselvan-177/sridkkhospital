@@ -161,6 +161,7 @@ export const siteData = {
       slug: "general",
       name: "General Medicine",
       image: "https://sridkkhospital.com/wp-content/uploads/2024/09/GENERAL-01-1024x1024.jpg",
+      imagePosition: "object-top",
       highlight: "Primary care · All ages · Fast appointments",
       description:
         "Our general medicine physicians provide comprehensive primary healthcare for patients of all ages. From routine check-ups and health screenings to managing chronic conditions, fever, infections, and follow-up care — all under one roof with fast appointment availability.",
@@ -317,7 +318,7 @@ export const siteData = {
     {
       slug: "hair-prp",
       name: "Hair PRP",
-      image: "https://sridkkhospital.com/wp-content/uploads/2024/09/HAIRPRP-01.jpg",
+      image: "/images/hair-prp.png",
       highlight: "Non-surgical · Uses your own blood",
       description:
         "Platelet-Rich Plasma (PRP) therapy uses growth factors from your own blood to stimulate dormant hair follicles, reduce hair fall, and promote new hair growth. It is completely natural, safe, and requires no surgery.",
@@ -388,8 +389,8 @@ export const siteData = {
       slug: "dr-d-k-nagu-sah",
       name: "Dr. D.K. Nagu Sah",
       role: "Senior Dental Specialist",
-      image:
-        "https://sridkkhospital.com/wp-content/uploads/2024/10/DR.PIC_-scaled.jpg",
+      image: "/images/dr-nagu-sah.jpg",
+      imagePosition: "object-top",
     },
     {
       slug: "dr-d-k-n-sriprakash",
@@ -397,12 +398,13 @@ export const siteData = {
       role: "Dental and Maxillofacial Specialist",
       image:
         "https://sridkkhospital.com/wp-content/uploads/2024/10/sri-scaled.jpg",
+      imagePosition: "object-top",
     },
     {
       slug: "dr-jeevitha",
       name: "Dr. Jeevitha",
       role: "Consultant Doctor",
-      image: "/assets/images/stock-team-unsplash.jpg",
+      image: "/images/dr-jeevitha.png",
     },
     {
       slug: "dr-sandhya",
@@ -410,6 +412,7 @@ export const siteData = {
       role: "Consultant Doctor",
       image:
         "https://sridkkhospital.com/wp-content/uploads/2024/10/DR.SANDHYA-PIC-scaled.jpg",
+      imagePosition: "object-[center_20%]",
     },
     {
       slug: "dr-dhivya-bharathi",
@@ -422,13 +425,14 @@ export const siteData = {
       slug: "dr-parkavi",
       name: "Dr. Parkavi",
       role: "Consultant Doctor",
-      image: "/assets/images/stock-team-unsplash.jpg",
+      image: "https://sridkkhospital.com/wp-content/uploads/2024/10/DR.PIC_-scaled.jpg",
+      imagePosition: "object-center",
     },
     {
       slug: "dr-jayashree",
       name: "Dr. Jayashree",
       role: "Consultant Doctor",
-      image: "/assets/images/stock-team-unsplash.jpg",
+      image: "/images/dr-jayashree.png",
     },
   ],
   patientSafety: [

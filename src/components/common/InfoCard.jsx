@@ -10,7 +10,7 @@ import { motion, useReducedMotion } from "framer-motion"
  *  href         — string  → navigate link (used when no onLearnMore)
  *  onLearnMore  — () => void → opens a popup modal (takes priority over href)
  */
-export function InfoCard({ title, description, image, href, onLearnMore }) {
+export function InfoCard({ title, description, image, href, onLearnMore, imagePosition }) {
   const reduceMotion = useReducedMotion()
   const Card = reduceMotion ? "article" : motion.article
   const motionProps = reduceMotion
@@ -26,7 +26,7 @@ export function InfoCard({ title, description, image, href, onLearnMore }) {
         <img
           src={image}
           alt={title}
-          className="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
+          className={`h-52 w-full object-cover transition duration-500 group-hover:scale-105 ${imagePosition || "object-center"}`}
           loading="lazy"
         />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-900/35 to-transparent" />

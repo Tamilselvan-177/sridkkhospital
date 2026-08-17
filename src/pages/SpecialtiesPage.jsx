@@ -23,6 +23,7 @@ export function SpecialtiesPage() {
                 title={item.name}
                 description={item.description}
                 image={item.image}
+                imagePosition={item.imagePosition}
                 onLearnMore={() => setActiveModal(item)}
               />
             </Reveal>
