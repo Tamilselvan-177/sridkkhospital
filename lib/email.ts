@@ -1,6 +1,15 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Lazy getter — only instantiated at runtime (inside API route handlers),
+// never at build time when env vars are not available.
+function getResend() {
+  const key = process.env.RESEND_API_KEY
+  if (!key) {
+    console.warn('[email] RESEND_API_KEY not set — emails will be skipped')
+    return null
+  }
+  return new Resend(key)
+}
 
 const FROM = process.env.RESEND_FROM_EMAIL || 'noreply@sridkkhospital.com'
 const ADMIN_EMAIL = process.env.HOSPITAL_ADMIN_EMAIL || 'sridkkhospital02@gmail.com'
@@ -19,6 +28,9 @@ export async function sendAppointmentEmails({
   date: string
   slot: string
 }) {
+  const resend = getResend()
+  if (!resend) return
+
   // Notify admin
   await resend.emails.send({
     from: FROM,
@@ -64,6 +76,9 @@ export async function sendCallbackEmail({
   email: string
   phone: string
 }) {
+  const resend = getResend()
+  if (!resend) return
+
   await resend.emails.send({
     from: FROM,
     to: ADMIN_EMAIL,
@@ -90,6 +105,9 @@ export async function sendContactEmail({
   phone: string
   message: string
 }) {
+  const resend = getResend()
+  if (!resend) return
+
   await resend.emails.send({
     from: FROM,
     to: ADMIN_EMAIL,
@@ -119,6 +137,9 @@ export async function sendCareersEmail({
   role: string
   resumeUrl?: string
 }) {
+  const resend = getResend()
+  if (!resend) return
+
   await resend.emails.send({
     from: FROM,
     to: ADMIN_EMAIL,
