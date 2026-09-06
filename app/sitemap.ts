@@ -21,14 +21,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === '' ? 1 : 0.8,
   }))
 
-  // Dynamic routes (Treatments)
-  const treatments = await prisma.treatment.findMany({ select: { slug: true } })
-  const treatmentRoutes = treatments.map((treatment) => ({
-    url: `${baseUrl}/treatments/${treatment.slug}`,
-    lastModified: new Date().toISOString().split('T')[0],
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
+  // Dynamic routes (Treatments) — gracefully falls back if DB unreachable at build time
+  let treatmentRoutes: MetadataRoute.Sitemap = []
+  try {
+    const treatments = await prisma.treatment.findMany({ select: { slug: true } })
+    treatmentRoutes = treatments.map((treatment) => ({
+      url: `${baseUrl}/treatments/${treatment.slug}`,
+      lastModified: new Date().toISOString().split('T')[0],
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
+  } catch {
+    // Use fallback slugs if DB is unavailable during build
+    const fallback = ['root-canal-treatment','dental-implants','dentures','orthodontic-treatments','tooth-extraction','smile-designing','botox','skin-brightening','hair-prp','laser-hair-removal']
+    treatmentRoutes = fallback.map((slug) => ({
+      url: `${baseUrl}/treatments/${slug}`,
+      lastModified: new Date().toISOString().split('T')[0],
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
+  }
 
   return [...routes, ...treatmentRoutes]
 }
