@@ -10,7 +10,15 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-*.local
+
+# Local env files — never commit these
+.env
+.env.local
+.env.*.local
+
+# Next.js build output
+.next/
+out/
 
 # Editor directories and files
 .vscode/*
@@ -24,3 +32,6 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Old Vite archive (not needed in repo)
+vite-archive/

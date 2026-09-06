@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+/* Hide default cursor on pointer-accurate devices (desktop) when custom cursor is active */
+@media (pointer: fine) {
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+:root {
+  font-family: "Figtree", "Noto Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color-scheme: light;
+  --white: #ffffff;
+  --black: #000000;
+  --transparent: transparent;
+}
+
+body {
+  margin: 0;
+  background-color: #f8fdff;
+  background:
+    radial-gradient(circle at 10% 0%, #ecfeff 0%, rgba(236, 254, 255, 0) 45%),
+    radial-gradient(circle at 90% 20%, #f0f9ff 0%, rgba(240, 249, 255, 0) 44%),
+    linear-gradient(180deg, #f8fdff 0%, #f3f9fc 100%);
+  color: #164e63;
+}
+
+.container-shell {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container-shell {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-shell {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@keyframes aurora {
+  from {
+    background-position: 50% 50%, 50% 50%;
+  }
+  to {
+    background-position: 350% 50%, 350% 50%;
+  }
+}
+
+/* -- Google Reviews Badge ----------------------------------------------- */
+.google-reviews-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-decoration: none;
+  transition: transform 150ms ease;
+}
+
+.google-reviews-badge:hover {
+  transform: scale(1.08);
+}
+
+.google-reviews-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.google-reviews-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.google-reviews-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Desktop: 40px icon */
+@media (min-width: 768px) {
+  .google-reviews-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .google-reviews-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+}

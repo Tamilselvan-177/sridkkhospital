@@ -1,0 +1,141 @@
+// This is the Prisma schema for MongoDB Atlas
+// Run: npx prisma generate
+// Run: npx prisma db push
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+}
+
+// ─────────────────────────────────────────────────────────────
+// Auth
+// ─────────────────────────────────────────────────────────────
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+  DOCTOR
+  USER
+}
+
+// ─────────────────────────────────────────────────────────────
+// Form Submissions (analytics + lead management)
+// ─────────────────────────────────────────────────────────────
+
+model FormSubmission {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  type      FormType
+  name      String
+  email     String
+  phone     String
+  data      Json       // flexible extra fields (date, slot, message, role, resumeUrl etc.)
+  status    LeadStatus @default(NEW)
+  notes     String?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+enum FormType {
+  APPOINTMENT
+  CALLBACK
+  CONTACT
+  CAREERS
+}
+
+enum LeadStatus {
+  NEW
+  REVIEWED
+  CONTACTED
+  CLOSED
+}
+
+// ─────────────────────────────────────────────────────────────
+// Hospital Content
+// ─────────────────────────────────────────────────────────────
+
+model Doctor {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  slug          String   @unique
+  name          String
+  role          String
+  image         String
+  imagePosition String?
+  qualification String?
+  experience    String?
+  languages     String?
+  availability  String?
+  highlight     String?
+  specialties   String[]
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+}
+
+model Treatment {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  slug        String   @unique
+  name        String
+  image       String
+  badge       String?
+  highlight   String?
+  description String
+  benefits    String[]
+  duration    String
+  category    String   // dental | aesthetics | hair
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model Specialty {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  slug        String   @unique
+  name        String
+  image       String
+  highlight   String?
+  description String
+  benefits    String[]
+  duration    String
+  badge       String?
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+}
+
+model Blog {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  slug        String   @unique
+  title       String
+  image       String
+  excerpt     String?
+  content     String?
+  publishedAt DateTime @default(now())
+  isActive    Boolean  @default(true)
+}
+
+model Testimonial {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  initials    String
+  avatarColor String
+  rating      Int
+  date        String
+  review      String
+  tag         String
+  specialty   String
+  platform    String
+  verified    Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
