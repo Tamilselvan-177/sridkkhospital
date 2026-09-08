@@ -1,3 +1,5 @@
+﻿export const dynamic = 'force-dynamic'
+
 import { prisma } from '@/lib/db'
 import { CalendarDays, PhoneCall, MessageSquare, Briefcase } from 'lucide-react'
 
@@ -66,3 +68,4 @@ export default async function AdminDashboard() {
     </div>
   )
 }
+

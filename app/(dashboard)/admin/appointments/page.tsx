@@ -1,3 +1,5 @@
+﻿export const dynamic = 'force-dynamic'
+
 import { prisma } from '@/lib/db'
 
 export default async function AppointmentsPage() {
@@ -51,3 +53,4 @@ export default async function AppointmentsPage() {
     </div>
   )
 }
+

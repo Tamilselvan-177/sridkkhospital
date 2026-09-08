@@ -80,7 +80,12 @@ export function CallbackForm() {
         body: JSON.stringify(form)
       })
       if (res.ok) {
-        setStatus('Callback request submitted successfully.')
+        setStatus('Callback request submitted. Redirecting to WhatsApp...')
+        const link = toWhatsAppLink(
+          siteData.contact.whatsapp,
+          `Instant Callback Request%nName: ${form.name}%nPhone: ${form.phone}%nEmail: ${form.email}`
+        ).replace(/%n/g, '\n')
+        window.open(link, '_blank', 'noopener,noreferrer')
         setForm({ name: '', phone: '', email: '' })
       } else {
         setStatus('Failed to submit. Please try again.')
@@ -146,7 +151,12 @@ export function AppointmentForm() {
         body: JSON.stringify(form)
       })
       if (res.ok) {
-        setStatus('Appointment details submitted successfully.')
+        setStatus('Appointment submitted. Redirecting to WhatsApp...')
+        const link = toWhatsAppLink(
+          siteData.contact.whatsapp,
+          `Appointment Request%nName: ${form.name}%nPhone: ${form.phone}%nEmail: ${form.email}%nDate: ${form.date}%nTime: ${form.slot}`
+        ).replace(/%n/g, '\n')
+        window.open(link, '_blank', 'noopener,noreferrer')
         setForm({ name: '', phone: '', email: '', date: '', slot: '10:00 AM' })
       } else {
         setStatus('Failed to submit. Please try again.')
@@ -238,7 +248,12 @@ export function ContactForm() {
         body: JSON.stringify(form)
       })
       if (res.ok) {
-        setStatus('Message submitted successfully.')
+        setStatus('Message submitted. Redirecting to WhatsApp...')
+        const link = toWhatsAppLink(
+          siteData.contact.whatsapp,
+          `Contact Form Enquiry%nName: ${form.name}%nPhone: ${form.phone}%nEmail: ${form.email}%nMessage: ${form.message}`
+        ).replace(/%n/g, '\n')
+        window.open(link, '_blank', 'noopener,noreferrer')
         setForm({ name: '', phone: '', email: '', message: '' })
       } else {
         setStatus('Failed to send. Please try again.')
@@ -329,7 +344,12 @@ export function CareersForm() {
       })
       
       if (res.ok) {
-        setStatus('Application submitted successfully.')
+        setStatus('Application submitted. Redirecting to WhatsApp...')
+        const link = toWhatsAppLink(
+          siteData.contact.whatsapp,
+          `Careers Application - ${form.role}%nName: ${form.name}%nPhone: ${form.phone}%nEmail: ${form.email}`
+        ).replace(/%n/g, '\n')
+        window.open(link, '_blank', 'noopener,noreferrer')
         setForm({
           name: '',
           email: '',
