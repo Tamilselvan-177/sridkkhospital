@@ -66,16 +66,30 @@ function StatusText({ status }: { status: string }) {
 
 export function CallbackForm() {
   const [status, setStatus] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const [form, setForm] = useState({ name: '', phone: '', email: '' })
 
-  function onSubmit(event: React.FormEvent) {
+  async function onSubmit(event: React.FormEvent) {
     event.preventDefault()
-    const link = toWhatsAppLink(
-      siteData.contact.whatsapp,
-      `Instant Callback Request%nName: ${form.name}%nPhone: ${form.phone}%nEmail: ${form.email}`
-    ).replace(/%n/g, '\n')
-    window.open(link, '_blank', 'noopener,noreferrer')
-    setStatus('Callback request opened in WhatsApp.')
+    setIsLoading(true)
+    setStatus('')
+    try {
+      const res = await fetch('/api/forms/callback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      })
+      if (res.ok) {
+        setStatus('Callback request submitted successfully.')
+        setForm({ name: '', phone: '', email: '' })
+      } else {
+        setStatus('Failed to submit. Please try again.')
+      }
+    } catch (e) {
+      setStatus('Error submitting request.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -109,7 +123,7 @@ export function CallbackForm() {
             placeholder="Enter your email"
           />
         </Field>
-        <ActionButton>Submit</ActionButton>
+        <ActionButton>{isLoading ? 'Submitting...' : 'Submit'}</ActionButton>
         <StatusText status={status} />
       </form>
     </FormShell>
@@ -118,16 +132,30 @@ export function CallbackForm() {
 
 export function AppointmentForm() {
   const [status, setStatus] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const [form, setForm] = useState({ name: '', phone: '', email: '', date: '', slot: '10:00 AM' })
 
-  function onSubmit(event: React.FormEvent) {
+  async function onSubmit(event: React.FormEvent) {
     event.preventDefault()
-    const link = toWhatsAppLink(
-      siteData.contact.whatsapp,
-      `Appointment Request%nName: ${form.name}%nPhone: ${form.phone}%nEmail: ${form.email}%nDate: ${form.date}%nTime: ${form.slot}`
-    ).replace(/%n/g, '\n')
-    window.open(link, '_blank', 'noopener,noreferrer')
-    setStatus('Appointment details sent to WhatsApp.')
+    setIsLoading(true)
+    setStatus('')
+    try {
+      const res = await fetch('/api/forms/appointment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      })
+      if (res.ok) {
+        setStatus('Appointment details submitted successfully.')
+        setForm({ name: '', phone: '', email: '', date: '', slot: '10:00 AM' })
+      } else {
+        setStatus('Failed to submit. Please try again.')
+      }
+    } catch (e) {
+      setStatus('Error submitting details.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -187,7 +215,7 @@ export function AppointmentForm() {
             </select>
           </Field>
         </div>
-        <ActionButton>Book Appointment</ActionButton>
+        <ActionButton>{isLoading ? 'Booking...' : 'Book Appointment'}</ActionButton>
         <StatusText status={status} />
       </form>
     </FormShell>
@@ -196,18 +224,30 @@ export function AppointmentForm() {
 
 export function ContactForm() {
   const [status, setStatus] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' })
 
-  function onSubmit(event: React.FormEvent) {
+  async function onSubmit(event: React.FormEvent) {
     event.preventDefault()
-    const mailto = toMailtoLink(siteData.contact.email, 'Contact Form Enquiry', [
-      `Name: ${form.name}`,
-      `Phone: ${form.phone}`,
-      `Email: ${form.email}`,
-      `Message: ${form.message}`,
-    ])
-    window.location.href = mailto
-    setStatus('Your mail app opened with the contact details.')
+    setIsLoading(true)
+    setStatus('')
+    try {
+      const res = await fetch('/api/forms/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      })
+      if (res.ok) {
+        setStatus('Message submitted successfully.')
+        setForm({ name: '', phone: '', email: '', message: '' })
+      } else {
+        setStatus('Failed to send. Please try again.')
+      }
+    } catch (e) {
+      setStatus('Error sending message.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -253,7 +293,7 @@ export function ContactForm() {
             placeholder="Type your message"
           />
         </Field>
-        <ActionButton>Send</ActionButton>
+        <ActionButton>{isLoading ? 'Sending...' : 'Send'}</ActionButton>
         <StatusText status={status} />
       </form>
     </FormShell>
@@ -262,26 +302,49 @@ export function ContactForm() {
 
 export function CareersForm() {
   const [status, setStatus] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const [form, setForm] = useState({
     name: '',
     email: '',
     phone: '',
     role: siteData.careersRoles[0] as string,
-    resumeName: '',
   })
+  const [resumeFile, setResumeFile] = useState<File | null>(null)
 
-  function onSubmit(event: React.FormEvent) {
+  async function onSubmit(event: React.FormEvent) {
     event.preventDefault()
-    const mailto = toMailtoLink(siteData.contact.email, `Careers Application - ${form.role}`, [
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
-      `Phone: ${form.phone}`,
-      `Role: ${form.role}`,
-      `Resume file selected locally: ${form.resumeName || 'Not provided'}`,
-      'Note: Please attach resume manually in your email app before sending.',
-    ])
-    window.location.href = mailto
-    setStatus('Mail app opened. Attach resume and send.')
+    setIsLoading(true)
+    setStatus('')
+    try {
+      const formData = new FormData()
+      formData.append('name', form.name)
+      formData.append('email', form.email)
+      formData.append('phone', form.phone)
+      formData.append('role', form.role)
+      if (resumeFile) formData.append('resume', resumeFile)
+
+      const res = await fetch('/api/forms/careers', {
+        method: 'POST',
+        body: formData
+      })
+      
+      if (res.ok) {
+        setStatus('Application submitted successfully.')
+        setForm({
+          name: '',
+          email: '',
+          phone: '',
+          role: siteData.careersRoles[0] as string,
+        })
+        setResumeFile(null)
+      } else {
+        setStatus('Failed to submit application. Please try again.')
+      }
+    } catch (e) {
+      setStatus('Error submitting application.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -330,14 +393,15 @@ export function CareersForm() {
             </select>
           </Field>
         </div>
-        <Field label="Resume" icon={Mail} hint="File will be selected locally. Attach it manually in your email client.">
+        <Field label="Resume" icon={Mail} hint="Please upload your resume (optional).">
           <input
             type="file"
             className={textInputClass()}
-            onChange={(e) => setForm({ ...form, resumeName: e.target.files?.[0]?.name ?? '' })}
+            onChange={(e) => setResumeFile(e.target.files?.[0] ?? null)}
+            accept=".pdf,.doc,.docx"
           />
         </Field>
-        <ActionButton>Send</ActionButton>
+        <ActionButton>{isLoading ? 'Sending...' : 'Send'}</ActionButton>
         <StatusText status={status} />
       </form>
     </FormShell>
