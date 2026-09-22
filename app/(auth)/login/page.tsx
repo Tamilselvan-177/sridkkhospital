@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Hospital, Lock, Mail, Loader2, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
+import { Lock, Mail, Loader2, ArrowRight } from 'lucide-react'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -42,8 +43,14 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
       <div className="w-full max-w-md overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl">
         <div className="bg-sky-700 px-8 py-10 text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-lg">
-            <Hospital className="h-8 w-8 text-sky-700" />
+          <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-white p-1.5 shadow-lg">
+            <Image
+              src="/assets/images/logo.png"
+              alt="SRI DKK Hospital Logo"
+              width={72}
+              height={72}
+              className="rounded-full object-cover"
+            />
           </div>
           <h1 className="text-2xl font-bold text-white">Staff Portal</h1>
           <p className="mt-2 text-sm text-sky-100">Sign in to manage appointments, inquiries, and careers.</p>

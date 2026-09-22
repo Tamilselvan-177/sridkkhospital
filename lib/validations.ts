@@ -11,9 +11,12 @@ export const CallbackSchema = z.object({
 export const AppointmentSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
   phone: z.string().regex(phoneRegex, 'Enter a valid Indian mobile number'),
-  email: z.string().email('Enter a valid email address'),
+  email: z.string().email('Enter a valid email address').optional().or(z.literal('')),
   date: z.string().min(1, 'Please select a date'),
-  slot: z.enum(['10:00 AM', '12:00 PM', '2:00 PM', '4:00 PM', '6:00 PM']),
+  slot: z.enum(['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM']),
+  doctor: z.string().optional(),
+  department: z.string().optional(),
+  reason: z.string().max(500).optional(),
 })
 
 export const ContactSchema = z.object({

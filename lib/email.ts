@@ -23,7 +23,7 @@ export async function sendAppointmentEmails({
   slot,
 }: {
   name: string
-  email: string
+  email?: string
   phone: string
   date: string
   slot: string
@@ -40,7 +40,7 @@ export async function sendAppointmentEmails({
       <h2>New Appointment Request</h2>
       <p><strong>Name:</strong> ${name}</p>
       <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Email:</strong> ${email || 'Not provided'}</p>
       <p><strong>Date:</strong> ${date}</p>
       <p><strong>Time Slot:</strong> ${slot}</p>
       <hr />
@@ -48,22 +48,24 @@ export async function sendAppointmentEmails({
     `,
   })
 
-  // Confirm to patient
-  await resend.emails.send({
-    from: FROM,
-    to: email,
-    subject: `Your appointment request at SRI DKK Hospital`,
-    html: `
-      <h2>Hi ${name},</h2>
-      <p>We've received your appointment request for <strong>${date}</strong> at <strong>${slot}</strong>.</p>
-      <p>Our team will confirm your slot shortly. You can also reach us at:</p>
-      <ul>
-        <li>📞 +91 9790122269</li>
-        <li>💬 <a href="https://wa.me/919790122269">WhatsApp us</a></li>
-      </ul>
-      <p>SRI D.K.K. Multispeciality Hospital, Kanchipuram</p>
-    `,
-  })
+  // Confirm to patient (only if email is provided)
+  if (email) {
+    await resend.emails.send({
+      from: FROM,
+      to: email,
+      subject: `Your appointment request at SRI DKK Hospital`,
+      html: `
+        <h2>Hi ${name},</h2>
+        <p>We've received your appointment request for <strong>${date}</strong> at <strong>${slot}</strong>.</p>
+        <p>Our team will confirm your slot shortly. You can also reach us at:</p>
+        <ul>
+          <li>📞 +91 9790122269</li>
+          <li>💬 <a href="https://wa.me/919790122269">WhatsApp us</a></li>
+        </ul>
+        <p>SRI D.K.K. Multispeciality Hospital, Kanchipuram</p>
+      `,
+    })
+  }
 }
 
 // ─── Callback notification ────────────────────────────────────────────────────

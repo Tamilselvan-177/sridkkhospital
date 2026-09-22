@@ -23,6 +23,7 @@ const WA_NUMBER = "919790122269"
 export default function ReviewRewardWidget() {
   const [mounted, setMounted] = useState(false)
   const [minimized, setMinimized] = useState(false)
+  const [dismissed, setDismissed] = useState(false)
   const [showForm, setShowForm] = useState(false)
   const pathname = usePathname()
 
@@ -34,18 +35,28 @@ export default function ReviewRewardWidget() {
     return () => clearTimeout(timer)
   }, [])
 
-  if (!mounted) return null
+  if (!mounted || dismissed) return null
 
   return (
     <div className="fixed bottom-24 left-1/2 z-[70] flex w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 flex-col items-center md:bottom-28 md:left-auto md:right-7 md:w-auto md:max-w-none md:-translate-x-0 md:items-end">
       <AnimatePresence mode="wait">
         {!minimized ? (
-          <ReviewPopupCard
-            key="maximized"
-            onMinimize={() => setMinimized(true)}
-            showForm={showForm}
-            setShowForm={setShowForm}
-          />
+          <div key="maximized" className="flex w-full flex-col items-center gap-2 md:items-end">
+            <ReviewPopupCard
+              onMinimize={() => setMinimized(true)}
+              showForm={showForm}
+              setShowForm={setShowForm}
+            />
+            {/* Close button below the card */}
+            <button
+              onClick={() => setDismissed(true)}
+              className="flex items-center gap-1.5 rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold text-slate-500 shadow-md backdrop-blur-sm transition hover:bg-slate-100 hover:text-slate-800"
+              aria-label="Close review widget"
+            >
+              <X className="h-3.5 w-3.5" />
+              Close
+            </button>
+          </div>
         ) : (
           <ReviewMinimizedIcon key="minimized" onMaximize={() => setMinimized(false)} />
         )}

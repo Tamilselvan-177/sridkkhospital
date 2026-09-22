@@ -63,6 +63,54 @@ enum LeadStatus {
 }
 
 // ─────────────────────────────────────────────────────────────
+// Appointment Management
+// ─────────────────────────────────────────────────────────────
+
+model Appointment {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  aptId       String       @unique // APT-0001 human-readable ID
+  patientName String
+  phone       String
+  email       String?
+  doctor      String?
+  department  String?
+  date        String       // YYYY-MM-DD
+  time        String       // e.g. "10:00 AM"
+  type        String       @default("In-Person")
+  reason      String?
+  status      AptStatus    @default(PENDING)
+  adminNotes  String?
+  history     AptHistory[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@index([status])
+  @@index([date])
+}
+
+model AptHistory {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  appointmentId String      @db.ObjectId
+  appointment   Appointment @relation(fields: [appointmentId], references: [id])
+  action        String
+  fromStatus    AptStatus?
+  toStatus      AptStatus?
+  note          String?
+  changedBy     String
+  createdAt     DateTime    @default(now())
+}
+
+enum AptStatus {
+  PENDING
+  CONFIRMED
+  RESCHEDULED
+  CHECKED_IN
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+// ─────────────────────────────────────────────────────────────
 // Hospital Content
 // ─────────────────────────────────────────────────────────────
 

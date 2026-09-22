@@ -191,14 +191,13 @@ export function AppointmentForm() {
             />
           </Field>
         </div>
-        <Field label="Email" icon={Mail}>
+        <Field label="Email (Optional)" icon={Mail}>
           <input
             type="email"
-            required
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             className={textInputClass()}
-            placeholder="Enter your email"
+            placeholder="Enter your email (optional)"
           />
         </Field>
         <div className="grid gap-4 sm:grid-cols-2">

@@ -190,11 +190,12 @@ export function ReviewPopup() {
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: '-120%', opacity: 0 }}
           transition={{ type: 'spring', stiffness: 240, damping: 26 }}
-          className="fixed bottom-28 left-3 z-[60] w-80 overflow-hidden rounded-2xl border border-amber-100 bg-white shadow-2xl shadow-amber-200/40 md:bottom-10 md:left-6"
+          className="fixed bottom-28 left-3 z-[60] w-80 flex flex-col gap-2 md:bottom-10 md:left-6"
           role="dialog"
           aria-label="Leave a review and get a discount"
           aria-modal="true"
         >
+          <div className="w-full overflow-hidden rounded-2xl border border-amber-100 bg-white shadow-2xl shadow-amber-200/40 relative">
           <div className={`h-1.5 bg-gradient-to-r ${rewardColor}`} />
           <div className="absolute right-10 top-2 flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-400 to-orange-400 px-2.5 py-0.5">
             <Sparkles className="h-3 w-3 text-white" />
@@ -279,6 +280,16 @@ export function ReviewPopup() {
               Code: <span className="font-bold text-slate-800">REVIEW10</span> · Valid 30 days
             </span>
           </div>
+          </div>
+          
+          <button
+            onClick={dismiss}
+            className="mx-auto flex items-center gap-1.5 rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold text-slate-500 shadow-md backdrop-blur-sm transition hover:bg-slate-100 hover:text-slate-800"
+            aria-label="Close review widget"
+          >
+            <X className="h-3.5 w-3.5" />
+            Close
+          </button>
         </motion.div>
       )}
     </AnimatePresence>

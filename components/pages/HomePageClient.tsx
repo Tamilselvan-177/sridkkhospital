@@ -10,7 +10,7 @@ import { DetailModal } from '@/components/common/DetailModal'
 import { MapLocationCard } from '@/components/common/MapLocationCard'
 import { SectionHeader } from '@/components/common/SectionHeader'
 import { Reveal } from '@/components/motion/Reveal'
-import { CallbackForm } from '@/components/forms/InquiryForms'
+import { AppointmentForm } from '@/components/forms/InquiryForms'
 import type { siteData as SiteDataType } from '@/data/siteData'
 
 // Heavy sections — dynamic import
@@ -175,8 +175,8 @@ export default function HomePageClient({ treatments, specialties, blogs, siteDat
         </div>
       </section>
 
-      {/* ── Free Consultation CTA + Callback Form ───────────────────────────── */}
-      <section className="container-shell grid gap-6 py-12 md:grid-cols-2">
+      {/* ── Free Consultation CTA ────────────────────────────────────────────── */}
+      <section className="container-shell py-12">
         <Reveal className="rounded-3xl bg-gradient-to-br from-sky-900 via-sky-800 to-indigo-800 p-8 text-white shadow-xl shadow-sky-900/20">
           <p className="mb-2 inline-flex rounded-full bg-amber-500/90 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white">
             🎁 Free Consultation Available
@@ -204,9 +204,6 @@ export default function HomePageClient({ treatments, specialties, blogs, siteDat
             <Timer className="h-3.5 w-3.5" />
             ⏱ Only a few free slots left today — act now
           </p>
-        </Reveal>
-        <Reveal id="callback">
-          <CallbackForm />
         </Reveal>
       </section>
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { AppointmentForm, CallbackForm, ContactForm } from '@/components/forms/InquiryForms'
+import { AppointmentForm, ContactForm } from '@/components/forms/InquiryForms'
 import { Clock, MapPin, MessageCircleMore, Phone, ShieldCheck, Star, Stethoscope } from 'lucide-react'
 import { MapLocationCard } from '@/components/common/MapLocationCard'
 import { SectionHeader } from '@/components/common/SectionHeader'
@@ -100,8 +100,6 @@ function TrustSidebar({ siteData }: { siteData: typeof SiteDataType }) {
           Read Patient Reviews →
         </a>
       </div>
-
-      <CallbackForm />
     </div>
   )
 }

@@ -10,10 +10,10 @@ import {
   MessageSquare,
   Briefcase,
   LogOut,
-  Hospital,
   Menu,
   X,
 } from 'lucide-react'
+import Image from 'next/image'
 import { useState } from 'react'
 
 const navigation = [
@@ -47,7 +47,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       >
         <div className="flex h-16 shrink-0 items-center justify-between px-6">
           <Link href="/admin" className="flex items-center gap-3 font-bold">
-            <Hospital className="h-6 w-6 text-sky-400" />
+            <Image
+              src="/assets/images/logo.png"
+              alt="SRI DKK Hospital Logo"
+              width={32}
+              height={32}
+              className="rounded-full object-cover ring-2 ring-sky-400/40"
+            />
             <span>Staff Portal</span>
           </Link>
           <button className="lg:hidden" onClick={() => setSidebarOpen(false)}>
@@ -95,7 +101,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {/* Mobile header */}
         <header className="flex h-16 shrink-0 items-center justify-between border-b border-slate-200 bg-white px-4 lg:hidden">
           <Link href="/admin" className="flex items-center gap-2 font-bold text-slate-900">
-            <Hospital className="h-5 w-5 text-sky-600" />
+            <Image
+              src="/assets/images/logo.png"
+              alt="SRI DKK Hospital Logo"
+              width={28}
+              height={28}
+              className="rounded-full object-cover"
+            />
             <span>Staff Portal</span>
           </Link>
           <button onClick={() => setSidebarOpen(true)} className="p-2 text-slate-500">

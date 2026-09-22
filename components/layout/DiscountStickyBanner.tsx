@@ -1,10 +1,17 @@
-import { Star, Gift, ExternalLink, ArrowRight } from 'lucide-react'
+'use client'
+
+import { useState } from 'react'
+import { Star, Gift, ExternalLink, ArrowRight, X } from 'lucide-react'
 
 const GOOGLE_REVIEW_URL =
   'https://www.google.com/search?q=dkk+hospital+kanchipuram&sourceid=chrome&ie=UTF-8#sv=CAESzAEKuAEStQEKd0FKaVQ0dExRaVZFX3kwSFlMamZRNDBhajF4X3E1UlNxOFh1ZXBSZWpOT2loQ2U1dUpMakpBY3RuRkhoMnU2aWZkRzRoQi1mUms0M1lHTWhlN3hKVGw0bVhCbF92RHd0TmR4M2FaYTZTS3I4OXFQT3V1WlhOYVF3EhY5TWs4YXRqekVwS01zZU1QbEtMdWVBGiJBRHNyOWZUeUNzUzBGOEJqM184aVNESXZ2YjNhWTlGaHVnEgQ4MDUxGgEzKgAwADgBQAAYACC3uaabC0oCEAI'
 const BOOK_URL = 'https://whatsform.com/xklykw'
 
 export function DiscountStickyBanner() {
+  const [visible, setVisible] = useState(true)
+
+  if (!visible) return null
+
   return (
     <div
       id="discount-sticky-banner"
@@ -20,8 +27,15 @@ export function DiscountStickyBanner() {
       }}
       className="w-full border-t border-amber-300 bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 shadow-2xl"
     >
-      <div className="container-shell flex flex-col items-center justify-between gap-2 py-2.5 sm:flex-row sm:gap-4">
-        <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 sm:justify-start">
+      <div className="container-shell relative flex flex-col items-center justify-between gap-2 py-2.5 sm:flex-row sm:gap-4 sm:pr-8">
+        <button
+          onClick={() => setVisible(false)}
+          className="absolute right-1 top-2 p-1 text-amber-100 transition hover:text-white sm:top-1/2 sm:-translate-y-1/2 sm:right-2"
+          aria-label="Close banner"
+        >
+          <X className="h-4 w-4" />
+        </button>
+        <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 sm:justify-start px-4 sm:px-0">
           <span className="flex items-center gap-1.5 text-sm font-extrabold text-white">
             <Gift className="h-4 w-4 text-white" />
             Share Your Experience &amp; Save! ⭐

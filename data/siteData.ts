@@ -5,7 +5,7 @@ export const siteData = {
   brand: {
     name: 'Sri D.K.K. Multispeciality Hospital',
     shortName: 'SRI D.K.K. HOSPITAL',
-    logo: 'https://sridkkhospital.com/wp-content/uploads/2024/09/logo.jpg',
+    logo: '/assets/images/logo.png',
     tagline: 'Trusted multispeciality care in Kanchipuram',
   },
   contact: {

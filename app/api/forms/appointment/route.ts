@@ -3,6 +3,11 @@ import { prisma } from '@/lib/db'
 import { AppointmentSchema } from '@/lib/validations'
 import { sendAppointmentEmails } from '@/lib/email'
 
+async function generateAptId(): Promise<string> {
+  const count = await prisma.appointment.count()
+  return `APT-${String(count + 1).padStart(4, '0')}`
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
@@ -15,21 +20,46 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    const { name, phone, email, date, slot } = parsed.data
+    const { name, phone, email, date, slot, doctor, department, reason } = parsed.data
 
-    // Save to MongoDB
+    // 1. Save to legacy FormSubmission (for backwards compatibility)
     await prisma.formSubmission.create({
       data: {
         type: 'APPOINTMENT',
         name,
         phone,
-        email,
-        data: { date, slot },
+        email: email || '',
+        data: { date, slot, doctor, department, reason },
         status: 'NEW',
       },
     })
 
-    // Send emails (non-blocking — don't fail submission on email error)
+    // 2. Also create a proper Appointment record for the management system
+    const aptId = await generateAptId()
+    await prisma.appointment.create({
+      data: {
+        aptId,
+        patientName: name,
+        phone,
+        email: email || '',
+        doctor: doctor ?? null,
+        department: department ?? null,
+        date,
+        time: slot,
+        type: 'In-Person',
+        reason: reason ?? null,
+        status: 'PENDING',
+        history: {
+          create: {
+            action: 'Appointment received from website',
+            toStatus: 'PENDING',
+            changedBy: 'System',
+          },
+        },
+      },
+    })
+
+    // 3. Send emails (non-blocking)
     try {
       await sendAppointmentEmails({ name, phone, email, date, slot })
     } catch (emailErr) {
