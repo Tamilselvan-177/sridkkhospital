@@ -19,7 +19,6 @@ import { useState } from 'react'
 const navigation = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
   { name: 'Appointments', href: '/admin/appointments', icon: CalendarDays },
-  { name: 'Callbacks', href: '/admin/callbacks', icon: PhoneCall },
   { name: 'Inquiries', href: '/admin/contacts', icon: MessageSquare },
   { name: 'Careers', href: '/admin/careers', icon: Briefcase },
 ]

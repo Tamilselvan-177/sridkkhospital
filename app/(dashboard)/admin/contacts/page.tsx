@@ -1,4 +1,4 @@
-﻿export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic'
 
 import { prisma } from '@/lib/db'
 
@@ -37,7 +37,7 @@ export default async function ContactsPage() {
                     <td className="px-6 py-4 font-medium text-slate-900 whitespace-nowrap">{contact.name}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{contact.phone}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{contact.email}</td>
-                    <td className="px-6 py-4 max-w-xs truncate" title={data?.message}>{data?.message || '-'}</td>
+                    <td className="px-6 py-4 min-w-[300px] whitespace-normal break-words">{data?.message || '-'}</td>
                     <td className="px-6 py-4 text-xs text-slate-400 whitespace-nowrap">
                       {new Date(contact.createdAt).toLocaleString()}
                     </td>
