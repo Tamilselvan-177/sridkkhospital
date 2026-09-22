@@ -24,7 +24,7 @@ const slides = [
       { icon: ShieldCheck, text: 'Certified Senior Specialists' },
     ],
     bg: 'from-sky-950 via-sky-900 to-indigo-900',
-    image: 'https://sridkkhospital.com/wp-content/uploads/2024/10/DENTAL-TREATMENT-1024x683.jpg',
+    image: '/assets/images/DENTAL-TREATMENT-1024x683.jpg',
     imageAlt: 'Dental consultation at SRI DKK Hospital',
   },
   {
@@ -44,7 +44,7 @@ const slides = [
       { icon: Star, text: '12+ Years of Service' },
     ],
     bg: 'from-sky-950 via-sky-900 to-indigo-900',
-    image: 'https://sridkkhospital.com/wp-content/uploads/2024/09/Child-care-01-1024x683.jpg',
+    image: '/assets/images/Child-care-01-1024x683.jpg',
     imageAlt: 'Expert team at SRI DKK Hospital',
   },
   {
@@ -64,7 +64,7 @@ const slides = [
       { icon: Users, text: 'Thousands of Satisfied Clients' },
     ],
     bg: 'from-sky-950 via-sky-900 to-indigo-900',
-    image: 'https://sridkkhospital.com/wp-content/uploads/2024/10/FACE-1024x683.jpg',
+    image: '/assets/images/FACE-1024x683.jpg',
     imageAlt: 'Medical aesthetics at SRI DKK Hospital',
   },
   {
@@ -83,7 +83,7 @@ const slides = [
       { icon: ShieldCheck, text: 'Certified Senior Specialists' },
     ],
     bg: 'from-sky-950 via-sky-900 to-indigo-900',
-    image: 'https://sridkkhospital.com/wp-content/uploads/2024/11/web.jpg',
+    image: '/assets/images/web.jpg',
     imageAlt: 'SRI DKK Hospital Care',
   },
   {
@@ -102,7 +102,7 @@ const slides = [
       { icon: Star, text: '12+ Years of Service' },
     ],
     bg: 'from-sky-950 via-sky-900 to-indigo-900',
-    image: 'https://sridkkhospital.com/wp-content/uploads/2024/10/12.jpg',
+    image: '/assets/images/12.jpg',
     imageAlt: 'Expert treatment at SRI DKK Hospital',
   },
 ]
