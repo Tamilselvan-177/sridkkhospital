@@ -58,11 +58,7 @@ function TreatmentCard({ item, index }: { item: Treatment; index: number }) {
           loading="lazy"
         />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-900/50 to-transparent" />
-        {(item.badge || item.slug === 'root-canal-treatment' || item.slug === 'dental-implants') && (
-          <span className="absolute right-3 top-3 rounded-full bg-amber-500 px-2.5 py-1 text-[10px] font-bold text-white shadow">
-            {item.badge || 'FREE CONSULT'}
-          </span>
-        )}
+
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5">
         <h3 className="text-lg font-bold text-slate-900">{item.name}</h3>
